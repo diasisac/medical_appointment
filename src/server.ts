@@ -1,10 +1,11 @@
 import express from 'express'
+import { userRouter } from './routes/user.routes'
 
 const app = express()
 
-app.get('/', (_req, res) => {
-  res.send('Show de bola!!! A aplicação está funcionando!')
-})
+app.use(express.json())
+
+app.use(userRouter)
 
 app.listen(3000, () => {
   console.log('Server started on port 3000')
