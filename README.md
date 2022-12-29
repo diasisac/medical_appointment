@@ -10,3 +10,4 @@
     - [ ] não deve ser possível realizar o cadastro de um username já existente.
     - [ ] não deve ser possível o usuário cadastrar a permissão de administrador
     
+---
