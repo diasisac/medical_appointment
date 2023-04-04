@@ -1,3 +1,4 @@
+import { CustomError } from '../../../../errors/custom.error'
 import { ParameterRequiredError } from '../../../../errors/parameter-required-error'
 import { User } from '../../entities/user.entity'
 import { IUserRepository } from '../../repositories/user.respository'
@@ -26,7 +27,7 @@ export class CreateUserUseCase {
     )
 
     if (userAlreadyExists) {
-      throw new ParameterRequiredError('User already exists', 403)
+      throw new CustomError('User already exists', 400)
     }
 
     const userCreate = await this.userRepository.save(user)
