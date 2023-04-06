@@ -3,7 +3,7 @@ import { createSpecialityController } from '../modules/speciality/useCases/creat
 
 const specialityRouter = Router()
 
-specialityRouter.post('/speciality', async (request, response) => {
+specialityRouter.post('/specialities', async (request, response) => {
   return await createSpecialityController.handle(request, response)
 })
 
