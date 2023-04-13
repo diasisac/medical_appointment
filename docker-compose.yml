@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+   medical_appointment:
+      image: postgres
+      container_name: medical_appointment_db
+      restart: always
+      ports: 
+         - 5432:5432
+      environment: 
+         - POSTGRES_USER=docker
+         - POSTGRES_PASSWORD=docker
+         - POSTGRES_DB=medical_appointment
+      volumes: 
+         - pgdata:/data/postgres
+      network_mode: bridge
+   app:
+      build: .
+      container_name: medical_appointment_app
+      ports:
+         - 3000:3000
+         - 9229:9229
+      volumes:
+         - .:/usr/app
+      network_mode: bridge
+volumes: 
+   pgdata:
+      driver: local
