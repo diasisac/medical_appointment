@@ -10,8 +10,8 @@ export class AuthenticateUserController {
     try {
       const data = request.body;
       const authenticateUserUseCase = new AuthenticateUserUseCase(this.userRepository, this.passwordBCrypt);
-      await authenticateUserUseCase.execute(data);
-      return response.status(200).json({ message: 'User authenticated successfully.' });
+      const user = await authenticateUserUseCase.execute(data);
+      return response.status(200).json(user);
     } catch (err: any) {
       return response.status(err.statusCode || 500).json({
         error: err.message || 'Unexpected error.',
