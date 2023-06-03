@@ -1,4 +1,4 @@
-import { sign } from 'jsonwebtoken'
+import { sign, verify } from 'jsonwebtoken'
 import { User } from '../../../modules/users/entities/user.entity'
 import { IToken } from './token'
 import { createHmac } from 'crypto'
@@ -20,5 +20,14 @@ export class JwtToken implements IToken {
       },
     )
     return token
+  }
+
+  validate(token: string): boolean {
+    try {
+      verify(token, this.TOKEN_SECRET_CRYPTO)
+      return true
+    } catch (err) {
+      return false
+    }
   }
 }
