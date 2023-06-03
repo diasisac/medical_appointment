@@ -29,5 +29,7 @@ export const ensureAuthenticatedMiddleware = (
     })
   }
 
+  request.userId = verifyToken.sub
+
   return next()
 }
