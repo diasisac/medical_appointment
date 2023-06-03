@@ -11,6 +11,11 @@
         "tags": [
           "Speciality"
         ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Cadastro de especialidades",
         "requestBody": {
           "content": {
@@ -124,6 +129,15 @@
           "username",
           "password"
         ]
+      }
+    },
+    "securitySchemes":{
+      "bearerAuth": {
+        "description": "Autenticação da API",
+        "type":"http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "tokenUrl": "http://localhost:3000/login"
       }
     }
   }
