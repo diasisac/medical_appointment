@@ -5,9 +5,9 @@
     "description": "Essa API é responsável pelo agendamento de consultas médicas",
     "version": "1.0.0"
   },
-  "paths":{
-    "/specialities":{
-      "post":{
+  "paths": {
+    "/specialities": {
+      "post": {
         "tags": [
           "Speciality"
         ],
@@ -25,11 +25,36 @@
           "200": {
             "content": {
               "application/json": {
-                "schema":{
+                "schema": {
                   "$ref": "#/components/schemas/SpecialityResponse"
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Autenticação do usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "token gerado"
+          },
+          "401": {
+            "description": "mensagem de erro"
           }
         }
       }
@@ -80,6 +105,25 @@
             "format": "date"
           }
         }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "username teste",
+            "example": "username_teste"
+          },
+          "password": {
+            "type": "string",
+            "description": "Senha do usuário",
+            "example": "senha_teste"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
       }
     }
   }
