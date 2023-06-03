@@ -2,11 +2,13 @@ import { Request, Response } from 'express'
 import { AuthenticateUserUseCase } from './authenticate-user.usecase'
 import { UserPrismaRepository } from '../../repositories/implementations/user.prisma.repository'
 import { PasswordBcrypt } from '../../../../infra/shared/crypto/password.bcrypt'
+import { JwtToken } from '../../../../infra/shared/token/jwt.token'
 
 export class AuthenticateUserController {
   constructor(
     private userRepository: UserPrismaRepository,
     private passwordBCrypt: PasswordBcrypt,
+    private jwtToken: JwtToken,
   ) {}
 
   async handle(request: Request, response: Response) {
@@ -15,6 +17,7 @@ export class AuthenticateUserController {
       const authenticateUserUseCase = new AuthenticateUserUseCase(
         this.userRepository,
         this.passwordBCrypt,
+        this.jwtToken,
       )
       const user = await authenticateUserUseCase.execute(data)
       return response.status(200).json(user)
